@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 /**
@@ -21,7 +22,7 @@ class CompanyFactory extends Factory
         $employees_amount = $employees_amount[array_rand($employees_amount)];
         return [
             'company_name' => $name,
-            'user_id' => rand(1,25),
+            'user_id' => User::factory(),
             'slug' => Str::slug($name),
             'city_name' => fake()->city(),
             'headline' => fake()->text(1000),

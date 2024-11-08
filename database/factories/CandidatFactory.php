@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,7 +26,7 @@ class CandidatFactory extends Factory
             'name' => $name,
             'username' => $username,
             'gender' => $gender,
-            'user_id' => rand(26,50),
+            'user_id' => User::factory(),
             'city_name' => fake()->city(),
             'date_of_birth' => fake()->date(),
             'phone' => fake()->phoneNumber(),
