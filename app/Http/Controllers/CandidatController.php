@@ -5,62 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Candidat;
 use App\Http\Requests\StoreCandidatRequest;
 use App\Http\Requests\UpdateCandidatRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class CandidatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function register($validatedData)
     {
-        //
-    }
+        $user = User::create([
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+        $user->assignRole('candidat');
+        $data_create_candidat = [
+            'username' => createSlug($validatedData['name']),
+            'user_id' => $user->id,
+        ];
+        foreach (['name', 'city_name', 'gender', 'date_of_birth', 'phone', 'profile_headline', 'skill', 'linkedin_link', 'current_salary', 'expected_salary'] as $key => $column) {
+            $data_create_candidat[$column] = $validatedData[$column] ?? null;
+        }
+        $candidat = Candidat::create($data_create_candidat);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCandidatRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Candidat $candidat)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Candidat $candidat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCandidatRequest $request, Candidat $candidat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Candidat $candidat)
-    {
-        //
+        return [
+            'candidat' => collect($data_create_candidat)->except('user_id')->merge([
+                'email' => $validatedData['email']
+            ])->toArray()
+        ];
     }
 }

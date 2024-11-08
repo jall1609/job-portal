@@ -3,64 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
+use App\Models\User; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Validator; 
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function register($validatedData)
     {
-        //
-    }
+        $user = User::create([
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+        $user->assignRole('company');
+        $data_create_company = [
+            'company_name' => $validatedData['company_name'],
+            'slug' => createSlug($validatedData['company_name']),
+            'user_id' => $user->id,
+            'city_name' => $validatedData['city_name'],
+            'headline' => $validatedData['headline'],
+            'employees_amount' => $validatedData['employees_amount'],
+        ];
+        $company = Company::create($data_create_company);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCompanyRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Company $company)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Company $company)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCompanyRequest $request, Company $company)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Company $company)
-    {
-        //
+        return [
+            'company' => collect($data_create_company)->except('user_id')->merge([
+                'email' => $validatedData['email']
+            ])->toArray()
+        ];
     }
 }

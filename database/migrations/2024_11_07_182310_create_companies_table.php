@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('city_name');
             $table->text('headline');
-            $table->enum('employees_amount', ['0-10', '11-50', '51-100', '100-300', '300-1000', '> 1000']);
+            $table->enum('employees_amount', ['1-10', '11-50', '51-100', '100-300', '300-1000', '> 1000']);
             $table->timestamps();
             $table->softDeletes();
         });

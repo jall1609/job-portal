@@ -1,5 +1,7 @@
 <?php 
 
+use Illuminate\Support\Str;
+
 function sendAPI(int $code = 200,  $data = [], string $message = null)
 {
     return response()->json([
@@ -10,6 +12,11 @@ function sendAPI(int $code = 200,  $data = [], string $message = null)
         ],
         'data' => $data
     ], $code);
+}
+
+function createSlug(string $string)
+{
+    return Str::slug($string);
 }
 
 ?>
