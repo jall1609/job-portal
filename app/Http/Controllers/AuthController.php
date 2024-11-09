@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobVacancy;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator; 
@@ -56,10 +57,18 @@ class AuthController extends Controller
     public function qq()
     {
         $request = new Request([
-            'email' => "dimasqw1e@gmail.com",
-            'password' => "pass12345",
+            "title" => "Web Progammer Backend",
+            "description" => "lorem ipsum1",
+            "requirement" => "lorem ipsum",
+            "contract_type" => "full-time",
+            "salary_min" => 1231321,
+            "salary_max" => 12345676,
+            "job_type" => "hybrid",
+            "location" => "Surabaya",
+            "application_deadline" => "2025-02-02",
+            "status" => "inactive"
         ]);
-        return $this->login($request);
+        return (new JobVacancyController())->update($request, JobVacancy::where('slug', 'web-progammer-backend-yayasan-putra-lestari-362')->first());
     }
 
     public function registerCompany(Request $request)

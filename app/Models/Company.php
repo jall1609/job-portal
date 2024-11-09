@@ -11,4 +11,9 @@ class Company extends Model
 
     protected $guarded = ['id'];
     protected $hidden = ['user_id', 'id'];
+
+    public function job_vacancy()
+    {
+        return $this->hasMany(JobVacancy::class);
+    }
 }

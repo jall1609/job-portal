@@ -11,4 +11,14 @@ class JobVacancy extends Model
     
     protected $guarded = ['id'];
     protected $hidden = ['company_id', 'id'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

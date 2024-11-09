@@ -23,3 +23,4 @@ Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function(){
     Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 });
 Route::get('/job-list', [JobVacancyController::class, 'index']);
+Route::get('/job-list/{jobVacancy}', [JobVacancyController::class, 'show']);
