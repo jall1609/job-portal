@@ -29,7 +29,7 @@ Route::group(['prefix' => 'job-list'], function(){
     Route::post('/{jobVacancy}/apply', [ApplicationController::class, 'apply'])->middleware(CandidatMiddleware::class);
 });
 Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function(){
-    Route::post('/register-company', [AuthController::class, 'registerCandidat'])->middleware('guest');
-    Route::post('/register-candidat', [AuthController::class, 'registerCompany'])->middleware('guest');
+    Route::post('/register-company', [AuthController::class, 'registerCompany'])->middleware('guest');
+    Route::post('/register-candidat', [AuthController::class, 'registerCandidat'])->middleware('guest');
     Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 });

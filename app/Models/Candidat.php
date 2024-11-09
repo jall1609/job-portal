@@ -21,4 +21,9 @@ class Candidat extends Model
     {
         return 'username';
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

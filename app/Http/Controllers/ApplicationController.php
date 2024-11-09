@@ -55,7 +55,9 @@ class ApplicationController extends Controller
     {
         return sendResponse(201, [
             'job_vacancy' => $jobVacancy->title,
-            'applicant' => Application::where('job_vacancy_id', $jobVacancy->id)->with('candidat')->paginate(20)
+            'applicant' => Application::where('job_vacancy_id', $jobVacancy->id)->with('candidat')->when( ($request->hide_rejected  ?? false) == true ,function($when) {
+                $when->where('status', '!=', 'rejected');
+            })->paginate(20)
         ], 'Success get Applicant by Job Vacancy');
     }
 

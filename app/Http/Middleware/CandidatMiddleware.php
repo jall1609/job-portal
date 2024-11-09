@@ -15,7 +15,7 @@ class CandidatMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->hasRole('candidat') == false) {
+        if( empty(auth()->user()) && auth()->user()->hasRole('candidat') == false) {
             return sendResponse(403, null, 'You do not have permission to access this resource.' );
         }
         return $next($request);

@@ -75,7 +75,7 @@ class JobVacancyController extends Controller
      */
     public function show(JobVacancy $jobVacancy)
     {
-        if(auth()->user()->hasRole('company')) {
+        if(  !empty(auth()->user()) && auth()->user()->hasRole('company')) {
             $jobVacancy  = JobVacancy::withCount('application')->find($jobVacancy->id);
         }
         return sendResponse(201, $jobVacancy, 'Success get detail job');
