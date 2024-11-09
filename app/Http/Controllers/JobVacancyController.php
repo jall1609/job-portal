@@ -31,7 +31,7 @@ class JobVacancyController extends Controller
         $auth_by_company = auth()->user()->company->id ?? null;
         return sendResponse(201,
             !empty($auth_by_company) ? 
-                    JobVacancy::where('company_id', auth()->user()->company->id)->paginate(20) : 
+                    JobVacancy::where('company_id', auth()->user()->company->id)->withCount('application')->paginate(20) : 
                 JobVacancy::where('status', 'active')->where(function($where){
                     $where->whereNull('application_deadline')->orWhere(function($where) {
                         $where->whereNotNull('application_deadline')->where('application_deadline', '>', now()->format('Y-m-d'));
@@ -75,6 +75,9 @@ class JobVacancyController extends Controller
      */
     public function show(JobVacancy $jobVacancy)
     {
+        if(auth()->user()->hasRole('company')) {
+            $jobVacancy  = JobVacancy::withCount('application')->find($jobVacancy->id);
+        }
         return sendResponse(201, $jobVacancy, 'Success get detail job');
     }
 

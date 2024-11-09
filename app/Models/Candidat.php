@@ -11,4 +11,14 @@ class Candidat extends Model
 
     protected $guarded = ['id'];
     protected $hidden = ['user_id', 'id'];
+
+    public function application()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }
