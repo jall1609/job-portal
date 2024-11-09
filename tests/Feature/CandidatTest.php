@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\Candidat;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CandidatTest extends TestCase
 {
@@ -13,7 +15,12 @@ class CandidatTest extends TestCase
      */
     public function test_my_application()
     {
-        $response = $this->get('/api/candidat/my-application');
+        $user = Candidat::latest()->first()->user;
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this->getJson('/api/candidat/my-application/', [
+            'Authorization' => 'Bearer ' . $token,
+        ]);
 
         $response->assertStatus(201);
     }

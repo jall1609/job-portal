@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\Http\Controllers\AuthController;
 use App\Models\Candidat;
 use App\Models\JobVacancy;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Database\Seeders\CandidatSeeder;
 use Database\Seeders\CompanySeeder;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
