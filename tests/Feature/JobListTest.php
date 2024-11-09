@@ -45,7 +45,7 @@ class JobListTest extends TestCase
 
         $user = Candidat::latest()->first()->user;
         $this->actingAs($user);
-        $jobVacancy = JobVacancy::latest()->first();
+        $jobVacancy = JobVacancy::where('status', 'active')->latest()->first();
         $response = $this->postJson('/api/job-list/'.$jobVacancy->slug .'/apply', $data);
 
         $response->assertStatus(201);

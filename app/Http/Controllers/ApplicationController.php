@@ -94,7 +94,7 @@ class ApplicationController extends Controller
     {
         try {
             $application = Application::where('candidat_id', auth()->user()->candidat->id)->with('job_vacancy')->get();
-            $return_api = [ 201, $application, 'Change status successfully'];
+            $return_api = [ 201, $application, 'Get my application successfully'];
         } catch (\Throwable $th) {
             $return_api = [ 500, $th->getMessage(), 'Internal Server Error'];
         }

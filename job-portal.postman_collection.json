@@ -1,0 +1,592 @@
+{
+	"info": {
+		"_postman_id": "701af0d9-9a1d-4896-9913-e502bc57c6d3",
+		"name": "job-portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20631117"
+	},
+	"item": [
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MTY0MCwiZXhwIjoxNzMxMTU1MjQwLCJuYmYiOjE3MzExNTE2NDAsImp0aSI6InJFeXFFVjhUUFJNeTFqTlgiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.9-A4lmuZh1adA82y3Kmt3FXpLCcMj1pdiKLZD9EE1TM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Web Progammer Front End\",\r\n    \"description\" : \"lorem ipsum\",\r\n    \"requirement\" : \"lorem ipsum\",\r\n    \"contract_type\" : \"full-time\",\r\n    \"salary_min\" : 1231321,\r\n    \"salary_max\" : 12345676,\r\n    \"job_type\" : \"hybrid\",\r\n    \"location\" : \"Surabaya\",\r\n    \"application_deadline\" : \"2025-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/{job_slug}/applicant",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MTY0MCwiZXhwIjoxNzMxMTU1MjQwLCJuYmYiOjE3MzExNTE2NDAsImp0aSI6InJFeXFFVjhUUFJNeTFqTlgiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.9-A4lmuZh1adA82y3Kmt3FXpLCcMj1pdiKLZD9EE1TM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hide_rejected\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/kepala-desa-ud-farida-aryani-tbk-1173/applicant",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy",
+								"kepala-desa-ud-farida-aryani-tbk-1173",
+								"applicant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/{job_slug}/applicant/{candidat_username}/change-status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MTY0MCwiZXhwIjoxNzMxMTU1MjQwLCJuYmYiOjE3MzExNTE2NDAsImp0aSI6InJFeXFFVjhUUFJNeTFqTlgiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.9-A4lmuZh1adA82y3Kmt3FXpLCcMj1pdiKLZD9EE1TM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"interview HR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/web-progammer-backend-yayasan-putra-lestari-5850/applicant/endah-zulaika-sfarm/change-status",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy",
+								"web-progammer-backend-yayasan-putra-lestari-5850",
+								"applicant",
+								"endah-zulaika-sfarm",
+								"change-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/{job_slug}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzExMjk0MTEsImV4cCI6MTczMTEzMzAxMSwibmJmIjoxNzMxMTI5NDExLCJqdGkiOiJPV2FLdm16aWtGTnFzQzZ0Iiwic3ViIjoiMjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-C1yp8FpRO5h2qdfXVrvc5WoCIng7p5h-31Q8rj_wzY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Web Progammer Backend\",\r\n    \"description\" : \"lorem ipsum1\",\r\n    \"requirement\" : \"lorem ipsum\",\r\n    \"contract_type\" : \"full-time\",\r\n    \"salary_min\" : 1231321,\r\n    \"salary_max\" : 12345676,\r\n    \"job_type\" : \"hybrid\",\r\n    \"location\" : \"Surabaya\",\r\n    \"application_deadline\" : \"2025-02-02\",\r\n    \"status\" : \"inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/web-progammer-backend-yayasan-putra-lestari-5850",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy",
+								"web-progammer-backend-yayasan-putra-lestari-5850"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/{job_slug}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzExMzA1NDgsImV4cCI6MTczMTEzNDE0OCwibmJmIjoxNzMxMTMwNTQ4LCJqdGkiOiJocmlKUk5pU2lzODJWUGh6Iiwic3ViIjoiMjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-gdihJzEQDOw0jFgF7zXMQc6KDvaWlCvX9W0sqLjDHU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Web Progammer Backend\",\r\n    \"description\" : \"lorem ipsum1\",\r\n    \"requirement\" : \"lorem ipsum\",\r\n    \"contract_type\" : \"full-time\",\r\n    \"salary_min\" : 1231321,\r\n    \"salary_max\" : 12345676,\r\n    \"job_type\" : \"hybrid\",\r\n    \"location\" : \"Surabaya\",\r\n    \"application_deadline\" : \"2025-02-02\",\r\n    \"status\" : \"inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy/penata-rias-505",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy",
+								"penata-rias-505"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MTY0MCwiZXhwIjoxNzMxMTU1MjQwLCJuYmYiOjE3MzExNTE2NDAsImp0aSI6InJFeXFFVjhUUFJNeTFqTlgiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.9-A4lmuZh1adA82y3Kmt3FXpLCcMj1pdiKLZD9EE1TM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/company/job-vacancy",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"company",
+								"job-vacancy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "candidat",
+			"item": [
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/candidat/my-application",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MDk4OCwiZXhwIjoxNzMxMTU0NTg4LCJuYmYiOjE3MzExNTA5ODgsImp0aSI6InpyN1ZrZG85dFRHZ0xEeHUiLCJzdWIiOiI1MCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.vVni3dfNN2R5fa-hIkHpfQIkA3vBrp_6UsKn6GE01aM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/candidat/my-application",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"candidat",
+								"my-application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2pvYi1wb3J0YWwucmlqYWxmMTYwOS5teS5pZC9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTczMTE1MDk4OCwiZXhwIjoxNzMxMTU0NTg4LCJuYmYiOjE3MzExNTA5ODgsImp0aSI6InpyN1ZrZG85dFRHZ0xEeHUiLCJzdWIiOiI1MCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.vVni3dfNN2R5fa-hIkHpfQIkA3vBrp_6UsKn6GE01aM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/me",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/auth/register-candidat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "kevinfachreza"
+							},
+							{
+								"key": "x-password",
+								"value": "valarmorghulis"
+							},
+							{
+								"key": "x-token",
+								"value": "NDI1N2FlNmRmNGU1NjFkM2E5Zjg2NDUwNGVlN2ZhN2RjZWZkYTM3YjYxZmQ0ODZiNjI2ZDhhYjE3MjcxNWI4MA=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"rijalfahmi123412414124@gmail.com\",\r\n    \"password\" : \"pass12345\",\r\n    \"name\" : \"Rizal Fahmi A\",\r\n    \"city_name\" : \"Jogja\",\r\n    \"profile_headline\" : \"lorem ipsum dolor sit amet\",\r\n    \"gender\" : \"male\",\r\n    \"date_of_birth\" : \"2010-04-03\",\r\n    \"phone\" : \"0895401514556\",\r\n    \"skill\" : \"laravel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/auth/register-candidat",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-candidat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "kevinfachreza"
+							},
+							{
+								"key": "x-password",
+								"value": "valarmorghulis"
+							},
+							{
+								"key": "x-token",
+								"value": "NDI1N2FlNmRmNGU1NjFkM2E5Zjg2NDUwNGVlN2ZhN2RjZWZkYTM3YjYxZmQ0ODZiNjI2ZDhhYjE3MjcxNWI4MA=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"wnuraini@example.org\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/auth/register-company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "kevinfachreza"
+							},
+							{
+								"key": "x-password",
+								"value": "valarmorghulis"
+							},
+							{
+								"key": "x-token",
+								"value": "NDI1N2FlNmRmNGU1NjFkM2E5Zjg2NDUwNGVlN2ZhN2RjZWZkYTM3YjYxZmQ0ODZiNjI2ZDhhYjE3MjcxNWI4MA=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"kantor-pemuda-menteng11111@gmail.com\",\r\n    \"password\" : \"12345\",\r\n    \"company_name\" : \"PT Pemuda Pancasila\",\r\n    \"city_name\" : \"Jogja\",\r\n    \"headline\" : \"lorem ipsum dolor sit amet\",\r\n    \"employees_amount\" : \"1-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/auth/register-company",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-company"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job-list",
+			"item": [
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/job-list/{job_slug}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/job-list/kepala-desa-ud-farida-aryani-tbk-1173",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"job-list",
+								"kepala-desa-ud-farida-aryani-tbk-1173"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://job-portal.rijalf1609.my.id/api/job-list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://job-portal.rijalf1609.my.id/api/job-list",
+							"protocol": "https",
+							"host": [
+								"job-portal",
+								"rijalf1609",
+								"my",
+								"id"
+							],
+							"path": [
+								"api",
+								"job-list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
