@@ -3,21 +3,72 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator; 
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
     public function createNewToken($token)
     {
-        return response()->json([
+        $output = [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => now()->addHours(2),
-            'user' => auth()->user()
+        ];
+        if(auth()->user()->hasRole('candidat')) {
+            $output['candidat'] = collect(auth()->user()->candidat)->except(['user_id', 'id'])->toArray();
+        } elseif(auth()->user()->hasRole('company')) {
+            $output['company'] = collect(auth()->user()->company)->except(['user_id', 'id'])->toArray();
+        }
+
+        return sendResponse(201, $output, 'Login success!');
+    }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:100',
+            'password' => 'required|string|min:6'
         ]);
+
+        if ($validator->fails()) {
+            return sendResponse(400, $validator->errors(), 'Bad Request');
+        }
+
+        $validatedData = $validator->validated();
+        $credentials = $request->only(['email', 'password']);
+
+        try {
+            $token = Auth::attempt($credentials);
+            if($token == false) return sendResponse(400, null, 'Wrong credentials');
+        } catch (\Throwable $th) {
+            $return_api = [ 500, $th->getMessage(), 'Internal Server Error'];
+            return sendResponse( ...$return_api );
+        }
+
+        return $this->createNewToken($token);
+    }
+
+    public function me()
+    {
+        if(auth()->user()->hasRole('candidat')) {
+            $output = collect(auth()->user()->candidat)->except(['user_id', 'id'])->toArray();
+        } elseif(auth()->user()->hasRole('company')) {
+            $output = collect(auth()->user()->company)->except(['user_id', 'id'])->toArray();
+        }
+        return sendResponse(201, $output, 'Get Profile Successfully');
+    }
+
+    public function qq()
+    {
+        $request = new Request([
+            'email' => "dimasqw1e@gmail.com",
+            'password' => "pass12345",
+        ]);
+        return $this->login($request);
     }
 
     public function registerCompany(Request $request)
@@ -32,7 +83,7 @@ class AuthController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return sendAPI(400, $validator->errors(), 'Bad Request');
+            return sendResponse(400, $validator->errors(), 'Bad Request');
         }
 
         $validatedData = $validator->validated();
@@ -47,7 +98,7 @@ class AuthController extends Controller
             $return_api = [ 500, $th->getMessage(), 'Internal Server Error'];
         }
 
-        return sendAPI( ...$return_api );
+        return sendResponse( ...$return_api );
     }
 
     public function registerCandidat(Request $request)
@@ -68,7 +119,7 @@ class AuthController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return sendAPI(400, $validator->errors(), 'Bad Request');
+            return sendResponse(400, $validator->errors(), 'Bad Request');
         }
 
         $validatedData = $validator->validated();
@@ -83,6 +134,6 @@ class AuthController extends Controller
             $return_api = [ 500, $th->getMessage(), 'Internal Server Error'];
         }
 
-        return sendAPI( ...$return_api );
+        return sendResponse( ...$return_api );
     }
 }

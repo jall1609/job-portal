@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-function sendAPI(int $code = 200,  $data = [], string $message = null)
+function sendResponse(int $code = 200,  $data = [], string $message = null)
 {
     return response()->json([
         'meta' => [
@@ -17,6 +17,16 @@ function sendAPI(int $code = 200,  $data = [], string $message = null)
 function createSlug(string $string)
 {
     return Str::slug($string);
+}
+
+function createUnixSlug(string $string)
+{
+    return createSlug($string) . '-'. rand(10, 10000);
+}
+
+function getRandomFromArray(array $array)
+{
+    return $array[array_rand($array)];
 }
 
 ?>

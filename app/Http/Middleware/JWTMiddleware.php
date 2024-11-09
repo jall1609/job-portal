@@ -22,11 +22,11 @@ class JWTMiddleware
             $user = JWTAuth::parseToken()->authenticate();
         } catch (\Exception $e) {
             if ($e instanceof TokenInvalidException) {
-                return  sendAPI(401, null, 'Token is Invalid' );
+                return  sendResponse(401, null, 'Token is Invalid' );
             } else if ($e instanceof TokenExpiredException) {
-                return sendAPI(401, null, 'Token is Expired' );
+                return sendResponse(401, null, 'Token is Expired' );
             }
-            return sendAPI(401, null, 'Authentication is required' );
+            return sendResponse(401, null, 'Authentication is required' );
         }
         return $next($request);
     }

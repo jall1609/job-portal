@@ -17,16 +17,14 @@ class CompanyFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->company();
-        $employees_amount = ['1-10', '11-50', '51-100', '100-300', '300-1000', '> 1000'];
-        $employees_amount = $employees_amount[array_rand($employees_amount)];
+        $name = fake()->unique()->company();
         return [
             'company_name' => $name,
             'user_id' => User::factory(),
             'slug' => Str::slug($name),
             'city_name' => fake()->city(),
             'headline' => fake()->text(1000),
-            'employees_amount' => $employees_amount,
+            'employees_amount' => getRandomFromArray(['1-10', '11-50', '51-100', '100-300', '300-1000', '> 1000']),
         ];
     }
 }

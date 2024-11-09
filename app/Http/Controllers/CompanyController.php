@@ -20,7 +20,7 @@ class CompanyController extends Controller
         $user->assignRole('company');
         $data_create_company = [
             'company_name' => $validatedData['company_name'],
-            'slug' => createSlug($validatedData['company_name']),
+            'slug' => createUnixSlug($validatedData['company_name']),
             'user_id' => $user->id,
             'city_name' => $validatedData['city_name'],
             'headline' => $validatedData['headline'],
@@ -29,7 +29,7 @@ class CompanyController extends Controller
         $company = Company::create($data_create_company);
 
         return [
-            'company' => collect($data_create_company)->except('user_id')->merge([
+            'company' => collect($data_create_company)->except(['user_id', 'id'])->merge([
                 'email' => $validatedData['email']
             ])->toArray()
         ];

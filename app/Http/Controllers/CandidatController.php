@@ -18,7 +18,7 @@ class CandidatController extends Controller
         ]);
         $user->assignRole('candidat');
         $data_create_candidat = [
-            'username' => createSlug($validatedData['name']),
+            'username' => createUnixSlug($validatedData['name']),
             'user_id' => $user->id,
         ];
         foreach (['name', 'city_name', 'gender', 'date_of_birth', 'phone', 'profile_headline', 'skill', 'linkedin_link', 'current_salary', 'expected_salary'] as $key => $column) {
@@ -27,7 +27,7 @@ class CandidatController extends Controller
         $candidat = Candidat::create($data_create_candidat);
 
         return [
-            'candidat' => collect($data_create_candidat)->except('user_id')->merge([
+            'candidat' => collect($data_create_candidat)->except(['user_id', 'id'])->merge([
                 'email' => $validatedData['email']
             ])->toArray()
         ];

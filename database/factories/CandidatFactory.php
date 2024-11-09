@@ -18,9 +18,8 @@ class CandidatFactory extends Factory
      */
     public function definition(): array
     {
-        $gender = ['male', 'female'];
-        $gender = $gender[array_rand($gender)];
-        $name = fake()->name($gender);
+        $gender = getRandomFromArray(['male', 'female']);
+        $name = fake()->unique()->name($gender);
         $username = Str::slug($name);
         return [
             'name' => $name,
@@ -33,7 +32,7 @@ class CandidatFactory extends Factory
             'linkedin_link' => 'https://www.linkedin.com/in/'. $username,
             'profile_headline' =>  fake()->jobTitle(),
             'current_salary' =>  rand(2000000, 30000000),
-            'current_salary' =>  rand(2000000, 30000000),
+            'expected_salary' =>  rand(2000000, 30000000),
             'skill' =>  null,
         ];
     }
