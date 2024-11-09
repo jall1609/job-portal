@@ -26,10 +26,8 @@ class CandidatController extends Controller
         }
         $candidat = Candidat::create($data_create_candidat);
 
-        return [
-            'candidat' => collect($data_create_candidat)->except(['user_id', 'id'])->merge([
-                'email' => $validatedData['email']
-            ])->toArray()
-        ];
+        return collect($data_create_candidat)->except(['user_id', 'id'])->merge([
+            'email' => $validatedData['email']
+        ])->toArray();
     }
 }

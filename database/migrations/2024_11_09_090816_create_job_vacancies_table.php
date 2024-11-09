@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('salary_max',3)->nullable();
             $table->enum('job_type', ['WFH', 'WFO', 'hybrid'])->nullable();
             $table->string('location')->nullable();
-            $table->dateTime('application_deadline')->nullable();
+            $table->date('application_deadline')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();

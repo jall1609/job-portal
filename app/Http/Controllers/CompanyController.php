@@ -28,10 +28,8 @@ class CompanyController extends Controller
         ];
         $company = Company::create($data_create_company);
 
-        return [
-            'company' => collect($data_create_company)->except(['user_id', 'id'])->merge([
-                'email' => $validatedData['email']
-            ])->toArray()
-        ];
+        return collect($data_create_company)->except(['user_id', 'id'])->merge([
+            'email' => $validatedData['email']
+        ])->toArray();
     }
 }

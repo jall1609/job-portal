@@ -18,11 +18,7 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => now()->addHours(2),
         ];
-        if(auth()->user()->hasRole('candidat')) {
-            $output['candidat'] = collect(auth()->user()->candidat)->except(['user_id', 'id'])->toArray();
-        } elseif(auth()->user()->hasRole('company')) {
-            $output['company'] = collect(auth()->user()->company)->except(['user_id', 'id'])->toArray();
-        }
+        $output['profile'] = auth()->user()->profile();
 
         return sendResponse(201, $output, 'Login success!');
     }
@@ -31,7 +27,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:100',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string|min:5'
         ]);
 
         if ($validator->fails()) {
@@ -54,12 +50,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        if(auth()->user()->hasRole('candidat')) {
-            $output = collect(auth()->user()->candidat)->except(['user_id', 'id'])->toArray();
-        } elseif(auth()->user()->hasRole('company')) {
-            $output = collect(auth()->user()->company)->except(['user_id', 'id'])->toArray();
-        }
-        return sendResponse(201, $output, 'Get Profile Successfully');
+        return sendResponse(201, auth()->user()->profile(), 'Get Profile Successfully');
     }
 
     public function qq()
@@ -75,7 +66,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:5',
             'company_name' => 'required|string|between:4,150',
             'city_name' => 'required|string|between:4,50',
             'headline' => 'required|string',
@@ -105,7 +96,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:5',
             'name' => 'required|string|between:4,150',
             'gender' => ['required', 'in:male,female'],
             'city_name' => 'required|string|between:4,50',

@@ -72,4 +72,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(Company::class);
     }
+
+    public function profile()
+    {
+        if(auth()->user()->hasRole('candidat')) {
+            $output = auth()->user()->candidat;
+        } elseif(auth()->user()->hasRole('company')) {
+            $output = auth()->user()->company;
+        }
+        return $output;
+    }
 }

@@ -10,4 +10,5 @@ class Candidat extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $hidden = ['user_id', 'id'];
 }

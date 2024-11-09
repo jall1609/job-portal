@@ -25,7 +25,7 @@ class JobVacancyFactory extends Factory
         $deadline = getRandomFromArray([null,  Carbon::createFromTimestamp(rand($currentDate->subMonth(4)->timestamp, $currentDate->addYear()->timestamp))->format('Y-m-d') ]);
         return [
             'title' => $title,
-            'slug' => createUnixSlug($title),
+            'slug' => createUnixSlug($title . ' ' . fake()->company()),
             'description' => fake()->text(1500),
             'requirement' => fake()->text(1000),
             'company_id' => rand(1, 25),
@@ -35,7 +35,7 @@ class JobVacancyFactory extends Factory
             'job_type' => getRandomFromArray(['WFH', 'WFO', 'hybrid']),
             'location' => fake()->city(),
             'application_deadline' => $deadline,
-            'status' => $deadline == null || $deadline < now() ? 'inactive' : 'active'
+            'status' => $deadline != null && $deadline < now() ? 'inactive' : 'active'
         ];
     }
 }
